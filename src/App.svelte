@@ -11,8 +11,14 @@
 
 <a-scene>
   <User />
+
+  <!--
   <Floor />
   <Background />
+-->
+
+  <a-entity environment="preset: goaland" />
+
   <Board {cellSize} {boardHeight} />
   <Pawn {cellSize} {boardHeight} />
   <!--

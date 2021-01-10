@@ -29,5 +29,9 @@
   <!-- hand controls -->
 
   <a-entity id="leftHand" thumbstick-movement laser-controls="hand: left" />
-  <a-entity id="rightHand" laser-controls="hand: right" />
+  <a-entity
+    id="rightHand"
+    laser-controls="hand: right"
+    line="color: red; opacity: 0.75"
+    raycaster="far: 2" />
 </a-entity>
