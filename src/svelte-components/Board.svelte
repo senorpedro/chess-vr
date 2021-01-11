@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BoardColor } from './types';
+  import { BoardColor } from '../types';
 
   export let cellSize: number;
   export let boardHeight: number;
