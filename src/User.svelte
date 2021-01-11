@@ -28,10 +28,15 @@
   <a-entity id="head" camera wasd-controls look-controls />
   <!-- hand controls -->
 
-  <a-entity id="leftHand" thumbstick-movement laser-controls="hand: left" />
+  <a-entity
+    id="leftHand"
+    thumbstick-movement
+    laser-controls="hand: left"
+    raycaster="objects: [data-type='chesspiece']"
+    line="color: #0f0" />
   <a-entity
     id="rightHand"
     laser-controls="hand: right"
-    line="color: red; opacity: 0.75"
-    raycaster="far: 2" />
+    raycaster="objects: [data-type='chesspiece']"
+    line="color: #f00" />
 </a-entity>

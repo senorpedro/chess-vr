@@ -1,7 +1,5 @@
 <script lang="ts">
-  import Background from './Background.svelte';
   import User from './User.svelte';
-  import Floor from './Floor.svelte';
   import Board from './Board.svelte';
   import Pawn from './Pawn.svelte';
 
@@ -12,15 +10,11 @@
 <a-scene>
   <User />
 
-  <!--
-  <Floor />
-  <Background />
--->
-
   <a-entity environment="preset: goaland" />
 
   <Board {cellSize} {boardHeight} />
   <Pawn {cellSize} {boardHeight} />
+
   <!--
   <a-entity mixin="marker" position="-1 0 0" />
   <a-entity
