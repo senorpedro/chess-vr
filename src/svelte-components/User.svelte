@@ -32,11 +32,11 @@
     id="leftHand"
     thumbstick-movement
     laser-controls="hand: left"
-    raycaster="objects: [data-type='chesspiece']"
+    raycaster="objects: [data-type='intersect-color-change']"
     line="color: #0f0" />
   <a-entity
     id="rightHand"
     laser-controls="hand: right"
-    raycaster="objects: [data-type='chesspiece']"
+    raycaster="objects: [data-type='intersect-color-change']"
     line="color: #f00" />
 </a-entity>

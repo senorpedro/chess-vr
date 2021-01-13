@@ -1,9 +1,8 @@
 import 'aframe';
-// import 'aframe-teleport-controls';
 import 'aframe-environment-component';
-import App from './svelte-components/App.svelte';
-
 import './aframe-components';
+
+import App from './svelte-components/App.svelte';
 
 const app = new App({ target: document.body });
 

@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "aframe-environment-component": "^2.0.0",
-    "aframe-teleport-controls": "^0.3.1",
     "sirv-cli": "^1.0.0"
   }
 }

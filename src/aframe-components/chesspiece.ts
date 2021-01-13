@@ -1,3 +1,4 @@
+/*
 import { PieceColor } from '../types';
 
 // TODO put this where it's only run once!
@@ -13,3 +14,5 @@ AFRAME.registerComponent('chesspiece', {
     this.el.setAttribute('color', color);
   },
 });
+
+*/
