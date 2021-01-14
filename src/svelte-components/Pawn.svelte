@@ -1,9 +1,11 @@
 <script lang="ts">
-  export let cellSize: number;
-  export let boardHeight: number;
+  import { BOARD_HEIGHT, CELL_SIZE } from '../constants';
+  import type { Color } from '../types';
 
-  const conePosition = `0 ${boardHeight + 0.1} 0`;
-  const spherePosition = `0 ${boardHeight + cellSize / 2 - 0.1} 0`;
+  export let color: Color;
+
+  const conePosition = `0 ${BOARD_HEIGHT + 0.1} 0`;
+  const spherePosition = `0 ${BOARD_HEIGHT + CELL_SIZE / 2 - 0.1} 0`;
 
   /**
    * TODO create mixin for chess piece
@@ -11,12 +13,12 @@
    */
 </script>
 
-<a-entity chess-piece="color: white">
+<a-entity chess-piece="color: {color}">
   <a-cone
     position={conePosition}
-    radius-bottom={cellSize / 3}
+    radius-bottom={CELL_SIZE / 3}
     radius-top="0"
-    height={cellSize / 2} />
+    height={CELL_SIZE / 2} />
 
-  <a-sphere position={spherePosition} radius={cellSize / 5} />
+  <a-sphere position={spherePosition} radius={CELL_SIZE / 5} />
 </a-entity>

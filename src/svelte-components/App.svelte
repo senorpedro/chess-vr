@@ -3,8 +3,7 @@
   import Board from './Board.svelte';
   import Pawn from './Pawn.svelte';
 
-  const cellSize = 1;
-  const boardHeight = cellSize / 4;
+  const scaleFactor = 0.5;
 </script>
 
 <a-scene>
@@ -12,8 +11,10 @@
 
   <a-entity environment="preset: goaland" />
 
-  <Board {cellSize} {boardHeight} />
-  <Pawn {cellSize} {boardHeight} />
+  <a-entity scale="{scaleFactor} {scaleFactor} {scaleFactor}">
+    <Board />
+    <Pawn color="white" />
+  </a-entity>
 
   <!--
   <a-entity mixin="marker" position="-1 0 0" />

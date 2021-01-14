@@ -12,6 +12,8 @@ const buttonPressColor = '#EF2D5E';
  * - ...
  */
 AFRAME.registerComponent('controller-handler', {
+  dependencies: ['position', 'chess-piece'],
+
   isMouseEnter: false,
   init: function () {
     const material = this.el.getAttribute('material');
@@ -21,7 +23,8 @@ AFRAME.registerComponent('controller-handler', {
 
     // trigger pulled
     // => lift piece .5 in the air
-    this.el.addEventListener('mousedown', () => {
+    this.el.addEventListener('mousedown', (e) => {
+      console.log(e)
       runOnAllChildren(chessPieceRoot, (n) => {
         n.setAttribute('material', `color: ${buttonPressColor}`);
       });

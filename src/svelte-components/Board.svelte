@@ -1,22 +1,24 @@
 <script lang="ts">
-  import { BoardColor } from '../types';
-
-  export let cellSize: number;
-  export let boardHeight: number;
+  import {
+    BOARD_COLOR_BLACK,
+    BOARD_COLOR_WHITE,
+    BOARD_HEIGHT,
+    CELL_SIZE,
+  } from '../constants';
 
   const rows = 8;
   const cols = 8;
 
-  const offset = 4 * cellSize;
+  const offset = 4 * CELL_SIZE;
 
-  const getTileColor = (rowIdx: number, colIdx: number): BoardColor => {
+  const getTileColor = (rowIdx: number, colIdx: number): string => {
     const evenRow = rowIdx % 2 === 0;
     const evenCol = colIdx % 2 === 0;
 
     if (evenRow) {
-      return evenCol ? BoardColor.white : BoardColor.black;
+      return evenCol ? BOARD_COLOR_WHITE : BOARD_COLOR_BLACK;
     }
-    return evenCol ? BoardColor.black : BoardColor.white;
+    return evenCol ? BOARD_COLOR_BLACK : BOARD_COLOR_WHITE;
   };
 </script>
 
@@ -24,11 +26,11 @@
 {#each { length: rows } as _, rowIdx}
   {#each { length: cols } as _, colIdx}
     <a-box
-      depth={cellSize}
-      height={boardHeight}
-      width={cellSize}
+      depth={CELL_SIZE}
+      height={BOARD_HEIGHT}
+      width={CELL_SIZE}
       shadow
-      position="{rowIdx * cellSize - offset} 0 {colIdx * cellSize - offset}"
+      position="{rowIdx * CELL_SIZE - offset} 0 {colIdx * CELL_SIZE - offset}"
       color={getTileColor(rowIdx, colIdx)} />
   {/each}
 {/each}
