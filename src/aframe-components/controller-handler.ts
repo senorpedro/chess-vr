@@ -1,8 +1,4 @@
-import { getChessPieceRoot, runOnAllChildren } from './helper';
-
-// TODO put this somewhere appropriate
-const pointedToColor = '#24CAFF';
-const buttonPressColor = '#EF2D5E';
+import { getChessPieceRoot } from './helper';
 
 /**
  * component to enable chess-pieces to be interactable with the controller
@@ -13,50 +9,67 @@ const buttonPressColor = '#EF2D5E';
  */
 AFRAME.registerComponent('controller-handler', {
   dependencies: ['position', 'chess-piece'],
+  isGrabbed: false,
+  raycaster: null,
 
-  isMouseEnter: false,
   init: function () {
-    const material = this.el.getAttribute('material');
-    const initialColor = material.color;
-
     const chessPieceRoot = getChessPieceRoot(this.el);
+
+    const emitEventOnRoot = (evtName: string) => {
+      (chessPieceRoot as any).emit(evtName);
+    }
 
     // trigger pulled
     // => lift piece .5 in the air
-    this.el.addEventListener('mousedown', (e) => {
+    this.el.addEventListener('mousedown', e => {
+      emitEventOnRoot('grabstart');
+      /*
       console.log(e)
+      this.isGrabbed = true;
+
+      const grabber = (e as any).detail.cursorEl;
+      this.raycaster = grabber.getAttribute('raycaster')
+
+      console.log(grabber)
+
       runOnAllChildren(chessPieceRoot, (n) => {
         n.setAttribute('material', `color: ${buttonPressColor}`);
+
+        // lift in the air
+        const position = n.getAttribute('position');
+        (position as any).y += liftOffset;
+        // TODO fix types
+        n.setAttribute('position', position as string);
       });
+      */
     });
 
     // trigger released
     // => put piece back on board
     this.el.addEventListener('mouseup', () => {
-      runOnAllChildren(chessPieceRoot, (n) =>
-        n.setAttribute(
-          'material',
-          `color: ${this.isMouseEnter ? pointedToColor : initialColor}`
-        )
-      );
-    });
-
-    // laser leaves object
-    this.el.addEventListener('mouseenter', () => {
-      this.isMouseEnter = true;
-
-      runOnAllChildren(chessPieceRoot, (n) => {
-        n.setAttribute('material', `color: ${pointedToColor}`);
-      });
+      emitEventOnRoot('grabend');
     });
 
     // laser hits object
-    this.el.addEventListener('mouseleave', () => {
-      this.isMouseEnter = false;
+    this.el.addEventListener('mouseenter', () => {
+      emitEventOnRoot('hoverstart');
+    });
 
-      runOnAllChildren(chessPieceRoot, (n) =>
-        n.setAttribute('material', `color: ${initialColor}`)
-      );
+    // laser leaves object
+    this.el.addEventListener('mouseleave', () => {
+      emitEventOnRoot('hoverend');
     });
   },
+  tick: function () {
+    if (this.isGrabbed) {
+      if (this.raycaster) {
+        // TODO see in aframe-super-hands-component/reaction_components/grabbable.js
+        // how to move element
+        // then snap to board
+        // see https://cdn.jsdelivr.net/gh/supermedium/superframe@dae06f2d832e4d305ec7da830fb09a6079af4790/scenes/aincraft/components/snap.js
+        console.log((this.raycaster as any).direction)
+      }
+    }
+
+  }
 });

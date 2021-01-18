@@ -1,5 +1,9 @@
 import type { Component, Entity, ObjectMap, System } from 'aframe';
 
+
+// TODO fix types!!!
+
+
 /**
  * helper function to iterate over child nodes
  * @param cb

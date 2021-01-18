@@ -9,7 +9,7 @@
 <a-scene>
   <User />
 
-  <a-entity environment="preset: goaland" />
+  <a-entity environment="preset: default" />
 
   <a-entity scale="{scaleFactor} {scaleFactor} {scaleFactor}">
     <Board />
