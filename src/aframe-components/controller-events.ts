@@ -7,10 +7,8 @@ import { getChessPieceRoot } from './helper';
  * - move on board
  * - ...
  */
-AFRAME.registerComponent('controller-handler', {
+AFRAME.registerComponent('controller-events', {
   dependencies: ['position', 'chess-piece'],
-  isGrabbed: false,
-  raycaster: null,
 
   init: function () {
     const chessPieceRoot = getChessPieceRoot(this.el);
@@ -24,24 +22,6 @@ AFRAME.registerComponent('controller-handler', {
     this.el.addEventListener('mousedown', e => {
       const grabber = (e as any).detail.cursorEl;
       emitEventOnRoot('grabstart', { grabber });
-      /*
-      console.log(e)
-      this.isGrabbed = true;
-
-      this.raycaster = grabber.getAttribute('raycaster')
-
-      console.log(grabber)
-
-      runOnAllChildren(chessPieceRoot, (n) => {
-        n.setAttribute('material', `color: ${buttonPressColor}`);
-
-        // lift in the air
-        const position = n.getAttribute('position');
-        (position as any).y += liftOffset;
-        // TODO fix types
-        n.setAttribute('position', position as string);
-      });
-      */
     });
 
     // trigger released
@@ -59,17 +39,5 @@ AFRAME.registerComponent('controller-handler', {
     this.el.addEventListener('mouseleave', () => {
       emitEventOnRoot('hoverend');
     });
-  },
-  tick: function () {
-    if (this.isGrabbed) {
-      if (this.raycaster) {
-        // TODO see in aframe-super-hands-component/reaction_components/grabbable.js
-        // how to move element
-        // then snap to board
-        // see https://cdn.jsdelivr.net/gh/supermedium/superframe@dae06f2d832e4d305ec7da830fb09a6079af4790/scenes/aincraft/components/snap.js
-        console.log((this.raycaster as any).direction)
-      }
-    }
-
   }
 });

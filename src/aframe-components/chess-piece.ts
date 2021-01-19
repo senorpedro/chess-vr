@@ -7,11 +7,11 @@ const pointedToColor = '#24CAFF';
 const buttonPressColor = '#EF2D5E';
 const liftOffset = 0.2;
 
-    const q = new Quaternion()
-    const v = new Vector3()
+const q = new Quaternion()
+const v = new Vector3()
 
-    const objPos = new Vector3()
-    const grabPos = new Vector3()
+const objPos = new Vector3()
+const grabPos = new Vector3()
 
 
 const getPositionString = (pos: Vector3): string =>
@@ -41,7 +41,7 @@ AFRAME.registerComponent('chess-piece', {
   },
   init: function () {
     runOnAllChildren(this.el, (n) => {
-      n.setAttribute('controller-handler', '1');
+      n.setAttribute('controller-events', '1');
 
       // UI stuff
       n.setAttribute('material', `color: ${this.data.color}`);
@@ -108,6 +108,11 @@ AFRAME.registerComponent('chess-piece', {
   },
 
   tick: function () {
+        // TODO see in aframe-super-hands-component/reaction_components/grabbable.js
+        // how to move element
+        // then snap to board
+        // see https://cdn.jsdelivr.net/gh/supermedium/superframe@dae06f2d832e4d305ec7da830fb09a6079af4790/scenes/aincraft/components/snap.js
+
     if (this.grabber !== null) {
       const grabber = (this.grabber as any);
       // reflect on z-axis to point in same direction as the laser

@@ -1,2 +1,2 @@
 import './chess-piece';
-import './controller-handler';
+import './controller-events';

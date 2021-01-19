@@ -32,11 +32,9 @@
     id="leftHand"
     thumbstick-movement
     laser-controls="hand: left"
-    raycaster="objects: [controller-handler]"
-    line="color: #0f0" />
+    raycaster="objects: [controller-events]" />
   <a-entity
     id="rightHand"
     laser-controls="hand: right"
-    raycaster="objects: [controller-handler]"
-    line="color: #f00" />
+    raycaster="objects: [controller-events]" />
 </a-entity>
