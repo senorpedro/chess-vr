@@ -3,13 +3,16 @@ import type { Component, Entity, ObjectMap, System } from 'aframe';
 
 // TODO fix types!!!
 
+export type AframeElement = Entity<ObjectMap<Component<any, System<any>>>>;
+export type AframeElementOrElement = AframeElement | Element;
+
 
 /**
  * helper function to iterate over child nodes
  * @param cb
  */
 export function runOnAllChildren(
-  el: Entity<ObjectMap<Component<any, System<any>>>> | HTMLElement,
+  el: AframeElementOrElement,
   cb: (node: Element) => void
 ): void {
   const childNodes = el.querySelectorAll('*');
@@ -17,12 +20,10 @@ export function runOnAllChildren(
 }
 
 export function getChessPieceRoot(
-  el: Entity<ObjectMap<Component<any, System<any>>>>
-): HTMLElement {
-  let ptr:
-    | Entity<ObjectMap<Component<any, System<any>>>>
-    | null
-    | HTMLElement = el;
+  el: AframeElement
+): Element {
+
+  let ptr: AframeElementOrElement | null = el;
 
   do {
     ptr = ptr.parentElement;

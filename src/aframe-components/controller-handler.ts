@@ -15,19 +15,19 @@ AFRAME.registerComponent('controller-handler', {
   init: function () {
     const chessPieceRoot = getChessPieceRoot(this.el);
 
-    const emitEventOnRoot = (evtName: string) => {
-      (chessPieceRoot as any).emit(evtName);
+    const emitEventOnRoot = (evtName: string, data = {}) => {
+      (chessPieceRoot as any).emit(evtName, data);
     }
 
     // trigger pulled
     // => lift piece .5 in the air
     this.el.addEventListener('mousedown', e => {
-      emitEventOnRoot('grabstart');
+      const grabber = (e as any).detail.cursorEl;
+      emitEventOnRoot('grabstart', { grabber });
       /*
       console.log(e)
       this.isGrabbed = true;
 
-      const grabber = (e as any).detail.cursorEl;
       this.raycaster = grabber.getAttribute('raycaster')
 
       console.log(grabber)
