@@ -33,8 +33,6 @@ AFRAME.registerComponent('chess-piece', {
   grabOffset: new Vector3(0,0,0),
   deltaPositionIsValid: false,
   deltaPosition: new Vector3(),
-  xFactor: 1,
-  zFactor: 1,
 
   schema: {
     color: { type: 'string', default: PIECE_COLOR_WHITE },
@@ -107,6 +105,19 @@ AFRAME.registerComponent('chess-piece', {
     });
   },
 
+
+  /**
+   * IDEA
+   *
+   *  instead of moving the chess pieces:
+   *    - highlight pointed to chess board field
+   *    - on mouse click
+   *      - if piece on field, hover it
+   *      - display fields where its possible to move to
+   *      - when user points to field drop piece there
+   *
+   */
+
   tick: function () {
         // TODO see in aframe-super-hands-component/reaction_components/grabbable.js
         // how to move element
@@ -121,7 +132,7 @@ AFRAME.registerComponent('chess-piece', {
         .applyQuaternion(grabber.object3D.getWorldQuaternion(q))
         .setLength(this.grabDistance)
         .add(grabber.object3D.getWorldPosition(v))
-        .add(this.grabOffset);
+        // .add(this.grabOffset);
       if (this.deltaPositionIsValid) {
         // relative position changes work better with nested entities
         this.deltaPosition.sub(this.targetPosition);
@@ -129,8 +140,8 @@ AFRAME.registerComponent('chess-piece', {
           const position = <Vector3>getAttribute(n, 'position')
 
           // only move in x and z space around, y stays the same
-          position.x -= this.deltaPosition.x * this.xFactor;
-          position.z -= this.deltaPosition.z * this.zFactor;
+          position.x -= this.deltaPosition.x;
+          position.z -= this.deltaPosition.z;
 
           n.setAttribute('position', getPositionString(position));
         })

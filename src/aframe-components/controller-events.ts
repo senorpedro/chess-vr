@@ -1,11 +1,8 @@
 import { getChessPieceRoot } from './helper';
 
 /**
- * component to enable chess-pieces to be interactable with the controller
- * - highlight when pointed to
- * - highlight when controller button is pressed
- * - move on board
- * - ...
+ * emits the controller events on the chess piece container when a
+ * object of the chess piece is hit by the laser
  */
 AFRAME.registerComponent('controller-events', {
   dependencies: ['position', 'chess-piece'],
@@ -39,5 +36,13 @@ AFRAME.registerComponent('controller-events', {
     this.el.addEventListener('mouseleave', () => {
       emitEventOnRoot('hoverend');
     });
+
+
+    this.el.addEventListener('raycaster-intersected', (e) => {
+      const x = e.detail.getIntersection(this.el);
+      console.log(x)
+    });
+
+
   }
 });
