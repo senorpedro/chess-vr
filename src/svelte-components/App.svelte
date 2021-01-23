@@ -1,20 +1,17 @@
 <script lang="ts">
   import User from './User.svelte';
-  import Board from './Board.svelte';
-  import Pawn from './Pawn.svelte';
+  import ChessGame from './ChessGame.svelte';
 
-  const scaleFactor = 0.5;
 </script>
 
 <a-scene>
-  <User />
-
   <a-entity environment="preset: default" />
 
-  <a-entity scale="{scaleFactor} {scaleFactor} {scaleFactor}">
-    <Board />
-    <Pawn color="white" />
-  </a-entity>
+  <!-- TODO put users position depending on playing black or white -->
+  <User />
+
+
+  <ChessGame />
 
   <!--
   <a-entity mixin="marker" position="-1 0 0" />
