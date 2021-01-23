@@ -132,7 +132,10 @@ AFRAME.registerComponent('chess-piece', {
         .applyQuaternion(grabber.object3D.getWorldQuaternion(q))
         .setLength(this.grabDistance)
         .add(grabber.object3D.getWorldPosition(v))
-        // .add(this.grabOffset);
+        .add(this.grabOffset);
+
+
+
       if (this.deltaPositionIsValid) {
         // relative position changes work better with nested entities
         this.deltaPosition.sub(this.targetPosition);
