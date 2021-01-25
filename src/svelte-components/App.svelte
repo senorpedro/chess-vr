@@ -7,11 +7,9 @@
 <a-scene>
   <a-entity environment="preset: default" />
 
-  <!-- TODO put users position depending on playing black or white -->
   <User />
 
-
-  <ChessGame />
+  <ChessGame playingSide="black" />
 
   <!--
   <a-entity mixin="marker" position="-1 0 0" />

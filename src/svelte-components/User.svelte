@@ -1,11 +1,11 @@
 <script lang="ts">
   const slowDownFactor = 50;
-  let x = 0,
-    z = 1.6,
-    y = 2;
+  let x = 1.5,
+    y = 1.6,
+    z = -2;
 
   const getPosition = () => {
-    return `${x} ${z} ${y}`;
+    return `${x} ${y} ${z}`;
   };
 
   let position = getPosition();
@@ -23,7 +23,7 @@
   });
 </script>
 
-<a-entity id="cameraRig" {position}>
+<a-entity id="cameraRig" {position} rotation="0 180 0">
   <!-- camera -->
   <a-entity id="head" camera wasd-controls look-controls />
   <!-- hand controls -->

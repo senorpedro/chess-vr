@@ -32,13 +32,4 @@
     shadow
     position={worldPosition}
     color={getTileColor(worldPosition)} /> 
-  <a-text value={chessPosition} 
-    position="{worldPosition.x} .5 {worldPosition.z}"
-    color="red"
-  ></a-text>
 {/each}
-
-
-  <!-- show coordinates at the bottom and left side of viewer -->
-
-
