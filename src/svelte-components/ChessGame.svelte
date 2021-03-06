@@ -3,11 +3,16 @@
   import { initPositionMap } from '../lib/position-helper';
   import type { Color } from '../types';
   import ChessBoard from './ChessBoard.svelte';
+  import {Chess} from 'chess.js';
+
 
 
   export let playingSide: Color;
 
   initPositionMap(playingSide);
+
+  const chess = new Chess();
+  console.log(chess.ascii())
 
 </script>
 
